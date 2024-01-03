@@ -1,0 +1,4 @@
+1- Create a button in HTML
+2- create a prompt input that accept only a number and a maximum of 100
+3- Store the prompt in a variable called changePixels
+
