@@ -1,23 +1,30 @@
 
 const button = document.querySelector("#add-grids")
 let frame = document.querySelector(".frame")
-let count = 0
+let eraseButton = document.querySelector("#delete")
+let red = 100
+let green  = 100
+let blue =100
 
-function createGrids(){
-    
-    let pixelNum = prompt("How many Pixels?", 8)
+function createv_pixelss(){
+     
+    let pixelNum =8
+    red = 100
+    green = 100
+    blue =100
+    pixelNum = prompt("Enter a grid layout", pixelNum)
     for(let i =0; i<pixelNum; i++){
-        let grid = document.createElement("div")
+        let v_pixels = document.createElement("div")
       
         
-        grid.classList.add("v-pixel")
-        frame.appendChild(grid)
+        v_pixels.classList.add("v-pixel")
+        frame.appendChild(v_pixels)
         
         
 
     }
-    pixels =document.querySelectorAll(".v-pixel")
-    pixels.forEach((div)=> {
+    v_pixels =document.querySelectorAll(".v-pixel")
+    v_pixels.forEach((div)=> {
         
         for(let j=0; j<pixelNum; j++){
 
@@ -30,12 +37,16 @@ function createGrids(){
     
    h_pixel = document.querySelectorAll(".h-pixel")
    h_pixel.forEach((div)=> {
-    div.addEventListener("mouseover", hover)
+        div.addEventListener("mouseover", gradedBlackHover)
+       
+        
+        
+    })
+    
 
-   })
-
-   for(let i=0; i<pixels.length-pixelNum; i++){
-    frame.removeChild(pixels[i])
+   
+   for(let i=0; i<v_pixels.length-pixelNum; i++){
+    frame.removeChild(v_pixels[i])
    }
 
    
@@ -50,16 +61,43 @@ function createGrids(){
    
    
 }
-button.addEventListener("click", createGrids)
+button.addEventListener("click", createv_pixelss)
+let count = 0
 
-function hover(){
-    this.style.background = "red"
-    console.log("OK!")
+function gradedBlackHover(){
+    
+    let options = document.querySelectorAll("option")
+    if(options[0].selected){
+        
+        red-=10
+        green-=10
+        blue-=10
+    }else{
+         red = Math.floor(Math.random()*256)
+         green = Math.floor(Math.random()*256)
+        blue = Math.floor(Math.random()*256)
+    }
+    
+   
+    
+    
+    
+    this.style.background = `rgb(${red},${green},${blue})`
+    
 }
 
 
 
 
+
+function erase(){
+    red = 100
+    green = 100
+    blue = 100
+    h_pixel = document.querySelectorAll(".h-pixel")
+    h_pixel.forEach((div)=> div.style.background="white")
+}
+eraseButton.addEventListener("click", erase)
 
 
 
