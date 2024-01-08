@@ -8,26 +8,26 @@ let green  = 100
 let blue =100
 let pixelNum =8
 let count2 = 0
-function createv_pixelss(){
+function createSquares(){
      
     
     red = 100
     green = 100
     blue =100
     pixelNum = prompt("Enter a grid layout", pixelNum)
-    if(pixelNum>128)return alert("Not more than 128");
+    if(pixelNum>64)return alert("Not more than 64"); 
     for(let i =0; i<pixelNum; i++){
-        let v_pixels = document.createElement("div")
+        let verticalSquares = document.createElement("div")
       
         
-        v_pixels.classList.add("v-pixel")
-        frame.appendChild(v_pixels)
+        verticalSquares.classList.add("v-pixel")
+        frame.appendChild(verticalSquares)
         
         
 
     }
-    v_pixels =document.querySelectorAll(".v-pixel")
-    v_pixels.forEach((div)=> {
+    verticalSquares =document.querySelectorAll(".v-pixel")
+    verticalSquares.forEach((div)=> {
         
         for(let j=0; j<pixelNum; j++){
 
@@ -39,31 +39,38 @@ function createv_pixelss(){
 })
     
    h_pixel = document.querySelectorAll(".h-pixel")
-   h_pixel.forEach((div)=> {
-        window.addEventListener("keydown", (event)=>{
+   window.addEventListener("keydown", (event)=>{
+        h_pixel.forEach((div)=> {
+                
             if(event.key==="z"){
-                div.addEventListener("mouseover", gradedBlackHover)
-            }
-
-            
+                    div.addEventListener("mouseover", gradedBlackHover)
+                    
+                }
         })
-        window.addEventListener("keyup", (event)=>{
-            if(event.key==="z"){
+    })
+
+    window.addEventListener("keyup", (event)=>{
+        h_pixel.forEach((div)=>{
+            if(event.key ==="z"){
                 div.removeEventListener("mouseover", gradedBlackHover)
             }
-            
         })
-        
-        
     })
+
+    
+
+
+        
+        
+    
     
 
    
-   for(let i=0; i<v_pixels.length-pixelNum; i++){
-    frame.removeChild(v_pixels[i])
+   for(let i=0; i<verticalSquares.length-pixelNum; i++){
+    frame.removeChild(verticalSquares[i])
    }
 }
-button.addEventListener("click", createv_pixelss)
+button.addEventListener("click", createSquares)
 let count = 0
 
 function gradedBlackHover(){
