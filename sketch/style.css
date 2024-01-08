@@ -1,3 +1,6 @@
+body{
+    background-color:gray;
+}
 .frame{
     display: flex;
     
@@ -45,4 +48,49 @@
     height: 20px;
     background: rgb(red, green, blue);
 
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.controlSection{
+    display: flex;
+    gap: 4px;
+    
+}
+
+.frame{
+    border: solid rgb(172, 128, 27) 1px;
+    
+
+}
+#add-grids{
+    background-color: rgb(16, 122, 148);
+    color: rgba(255, 255, 255, 0.744);
+}
+#delete{
+    background-color: rgb(100,100,100);
+}
+
+select{
+    background-color: rgb(16, 122, 148);
+    color:rgba(255, 255, 255, 0.744);
+    
+}
+option{
+    background-color: azure;
+    color: black;
+}
+
+button{
+    padding: 10px;
+    width: fit-content;
+    border-radius: 5%;
+    transition-duration:0.1s ;
+}
+.controlSection *:hover{
+    filter: brightness(80%);
 }
