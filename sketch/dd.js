@@ -1,79 +1,73 @@
 
-const button = document.querySelector("#add-grids")
+const changePixelLayoutButton = document.querySelector("#change-pixel-layout-button")
 let frame = document.querySelector(".frame")
-let eraseButton = document.querySelector("#delete")
+let eraseButton = document.querySelector("#erase-button")
 let body = document.querySelector("body")
+let description = document.querySelector(".description")
+let instruction = document.querySelector(".instruction ")
 let red = 100
 let green  = 100
 let blue =100
 let pixelNum =8
-let count2 = 0
-function createSquares(){
+
+function changePixelLayOut(){
      
-    
+    instruction.style.display = "block"
     red = 100
     green = 100
     blue =100
     pixelNum = prompt("Enter a grid layout", pixelNum)
     if(pixelNum>64)return alert("Not more than 64"); 
-    for(let i =0; i<pixelNum; i++){
-        let verticalSquares = document.createElement("div")
-      
-        
-        verticalSquares.classList.add("v-pixel")
-        frame.appendChild(verticalSquares)
-        
-        
+        console.log(typeof pixelNum)
+        description.textContent = `${pixelNum}x${pixelNum} grid`
+        for(let i =0; i<pixelNum; i++){
+            let verticalSquares = document.createElement("div")
+            verticalSquares.classList.add("v-square")
+            frame.appendChild(verticalSquares)
 
-    }
-    verticalSquares =document.querySelectorAll(".v-pixel")
-    verticalSquares.forEach((div)=> {
+        }
+    verticalSquares = document.querySelectorAll(".v-square")
+    verticalSquares.forEach((square)=> {
         
         for(let j=0; j<pixelNum; j++){
 
             
-            let h_pixel = document.createElement("div")
-            h_pixel.classList.add("h-pixel")
-            div.appendChild(h_pixel)
+           let horizontalSquares = document.createElement("div")
+           horizontalSquares.classList.add("h-square")
+            square.appendChild(horizontalSquares)
         }
 })
     
-   h_pixel = document.querySelectorAll(".h-pixel")
-   window.addEventListener("keydown", (event)=>{
-        h_pixel.forEach((div)=> {
+  horizontalSquares = document.querySelectorAll(".h-square")
+  window.addEventListener("keydown", (event)=>{
+
+    horizontalSquares.forEach((square)=> {
                 
-            if(event.key==="z"){
-                    div.addEventListener("mouseover", gradedBlackHover)
-                    
-                }
+        if(event.key==="z"){
+
+            square.addEventListener("mouseover", colorSquareHover)
+        }          
+                
         })
     })
 
     window.addEventListener("keyup", (event)=>{
-        h_pixel.forEach((div)=>{
-            if(event.key ==="z"){
-                div.removeEventListener("mouseover", gradedBlackHover)
-            }
-        })
+        
+        horizontalSquares.forEach((square)=>{
+        if(event.key==="z"){
+            square.removeEventListener("mouseover", colorSquareHover)
+        }  
+         })   
     })
-
-    
-
-
-        
-        
-    
-    
-
    
    for(let i=0; i<verticalSquares.length-pixelNum; i++){
     frame.removeChild(verticalSquares[i])
    }
 }
-button.addEventListener("click", createSquares)
+changePixelLayoutButton.addEventListener("click", changePixelLayOut)
 let count = 0
 
-function gradedBlackHover(){
+function colorSquaresHover(){
     
     let options = document.querySelectorAll("option")
     if(options[0].selected){
@@ -92,26 +86,16 @@ function gradedBlackHover(){
         blue = Math.floor(Math.random()*256)
     }
     
-   
-    
-    
-    
     this.style.background = `rgb(${red},${green},${blue})`
     
-}
-
-
-
-function white(){
-    this.style.background = "white"
 }
 
 function erase(){
     red = 100
     green = 100
     blue = 100
-    h_pixel = document.querySelectorAll(".h-pixel")
-    h_pixel.forEach((div)=> div.style.background=body.style.background)
+   horizontalSquares = document.querySelectorAll(".h-square")
+   horizontalSquares.forEach((square)=> square.style.background=body.style.background)
 }
 eraseButton.addEventListener("click", erase)
 

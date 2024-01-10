@@ -10,13 +10,13 @@ body{
     column-gap:0;
     
     
-    width: 400px;
+    width: 600px;
     flex-direction: column;
-    height: 400px;
+    height: 600px;
     
     border: solid 0.1px;
 }
-.v-pixel{
+.v-square{
     border: none;
     
     width: 100%;
@@ -31,7 +31,7 @@ body{
     
 }
 
-.h-pixel{
+.h-square{
     
     
     width: 100%;
@@ -67,11 +67,11 @@ body{
     
 
 }
-#add-grids{
+#change-pixel-layout-button{
     background-color: rgb(16, 122, 148);
     color: rgba(255, 255, 255, 0.744);
 }
-#delete{
+#erase-button{
     background-color: rgb(100,100,100);
 }
 
@@ -90,7 +90,20 @@ button{
     width: fit-content;
     border-radius: 5%;
     transition-duration:0.1s ;
+    
+}
+.controlSection *{
+    font-size: 25px;
 }
 .controlSection *:hover{
     filter: brightness(80%);
+
+}
+
+.description{
+    display: flex;
+    align-items: flex-end;
+}
+.instruction{
+    display: none;
 }
