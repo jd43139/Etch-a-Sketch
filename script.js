@@ -16,8 +16,9 @@ function changePixelLayOut(){
     red = 100
     green = 100
     blue =100
-    pixelNum = Number(prompt("Enter a grid layout", 8))
+    pixelNum = Number(prompt("Enter a grid layout", pixelNum))
     if(pixelNum>64 ||isNaN(pixelNum)  || typeof pixelNum!=="number")return alert("You should enter a VALID NUMBER and not exceed 64"); 
+
         console.log(typeof pixelNum)
         description.textContent = `${pixelNum}x${pixelNum} grid`
         for(let i =0; i<pixelNum; i++){
@@ -38,31 +39,12 @@ function changePixelLayOut(){
         }
 })
     
-  horizontalSquares = document.querySelectorAll(".h-square")
-  window.addEventListener("keydown", (event)=>{
-
-    horizontalSquares.forEach((square)=> {
-                
-        if(event.key==="z"){
-
-            square.addEventListener("mouseover", colorSquareHover)
-        }          
-                
-        })
-    })
-
-    window.addEventListener("keyup", (event)=>{
-        
-        horizontalSquares.forEach((square)=>{
-        if(event.key==="z"){
-            square.removeEventListener("mouseover", colorSquareHover)
-        }  
-         })   
-    })
+  
    
    for(let i=0; i<verticalSquares.length-pixelNum; i++){
     frame.removeChild(verticalSquares[i])
    }
+   horizontalSquares = document.querySelectorAll(".h-square")
 }
 changePixelLayoutButton.addEventListener("click", changePixelLayOut)
 let count = 0
@@ -90,17 +72,65 @@ function colorSquareHover(){
     
 }
 
-function erase(){
+function clear(){
     red = 100
     green = 100
     blue = 100
    horizontalSquares = document.querySelectorAll(".h-square")
    horizontalSquares.forEach((square)=> square.style.background=body.style.background)
 }
-eraseButton.addEventListener("click", erase)
+
+function erase(){
+    this.style.background = body.style.background
+}
+eraseButton.addEventListener("click", clear)
 
 
 
+changePixelLayOut()
+
+
+horizontalSquares = document.querySelectorAll(".h-square")
+  window.addEventListener("keydown", (event)=>{
+
+    horizontalSquares.forEach((square)=> {
+                
+        if(event.key==="z"){
+        
+            square.addEventListener("mouseover", colorSquareHover)
+        }          
+                
+        })
+    })
+
+    window.addEventListener("keyup", (event)=>{
+        
+        horizontalSquares.forEach((square)=>{
+        if(event.key==="z"){
+            square.removeEventListener("mouseover", colorSquareHover)
+        }  
+         })   
+    })
 
 
 
+    window.addEventListener("keydown", (event)=>{
+
+        horizontalSquares.forEach((square)=> {
+                    
+            if(event.key==="a"){
+            
+                square.addEventListener("mouseover", erase)
+            }          
+                    
+            })
+        })
+    
+        window.addEventListener("keyup", (event)=>{
+            
+            horizontalSquares.forEach((square)=>{
+            if(event.key==="a"){
+                square.removeEventListener("mouseover", erase)
+            }  
+             })   
+        })
